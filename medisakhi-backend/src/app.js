@@ -1,0 +1,50 @@
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import connectDB from "./config.js/db.js";
+import medicineRoutes from "./routes/medicine.routes.js";
+import aiRoutes from "./routes/ai.routes.js";
+import authRoutes from "./routes/auth.routes.js";
+import doctorRoutes from "./routes/doctor.routes.js";
+import availabilityRoutes from "./routes/availability.routes.js";
+import consultationRoutes from "./routes/consultation.routes.js";
+import priceRoutes from "./routes/price.routes.js";
+import barcodeRoutes from "./routes/barcode.routes.js";
+import "./utils/reminderCron.js";
+import reminderRoutes from "./routes/reminder.routes.js";
+import prescriptionRoutes from "./routes/prescription.routes.js";
+
+
+
+
+
+
+
+
+
+dotenv.config();
+connectDB();
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+app.use("/api/medicines", medicineRoutes);
+app.use("/api/ai", aiRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/doctors", doctorRoutes);
+app.use("/api/availability", availabilityRoutes);
+app.use("/api/consultations", consultationRoutes);
+app.use("/api/prices", priceRoutes);
+app.use("/api/barcode", barcodeRoutes);
+app.use("/api/reminders", reminderRoutes);
+app.use("/api/prescription", prescriptionRoutes);
+
+
+
+
+app.get("/", (req, res) => {
+  res.send("MediSakhi API is running");
+});
+
+export default app;

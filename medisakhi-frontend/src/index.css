@@ -1,0 +1,37 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+body {
+  font-family: Roboto,'Inter', sans-serif;
+}
+
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+.prose h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.prose h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.prose ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+.prose li {
+  margin-bottom: 0.3rem;
+}
