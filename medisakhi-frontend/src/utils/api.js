@@ -1,5 +1,4 @@
-const API_BASE = "http://localhost:5000/api";
-
+const API_BASE = import.meta.env.VITE_API_URL + "/api";
 
 export const apiRequest = async (url, method = "GET", body = null) => {
   const token = localStorage.getItem("token");
@@ -8,7 +7,7 @@ export const apiRequest = async (url, method = "GET", body = null) => {
     method,
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: token ? `Bearer ${token}` : "",
     },
     body: body ? JSON.stringify(body) : null,
   });
