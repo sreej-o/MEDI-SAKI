@@ -1,48 +1,38 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import Home from "./pages/Home.jsx";
 import MedicineSearch from "./pages/MedicineSearch.jsx";
 import MedicineDetails from "./pages/MedicineDetails.jsx";
 import Consult from "./pages/Consult.jsx";
+import Navbar from "./components/Navbar.jsx";
 import ChatbotPage from "./pages/ChatbotPage.jsx";
 import Reminders from "./pages/Reminders.jsx";
 import BarcodeScanner from "./pages/BarcodeScanner.jsx";
 import PriceComparison from "./pages/PriceComparison.jsx";
 import DoctorDetails from "./pages/DoctorDetails.jsx";
-import Doctors from "./pages/Doctors.jsx";
+import DoctorDashboard from "./pages/Dashboards/DoctorDashboard.jsx";
+import PatientDashboard from "./pages/Dashboards/PatientDashboard.jsx";
+import Login from "./pages/login.jsx";
+import Signup from "./pages/Signup.jsx";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import Doctors from "./pages/Doctors";
 import Payment from "./pages/Payment.jsx";
 import Waiting from "./pages/Waiting.jsx";
 import PrescriptionUpload from "./pages/Prescription.jsx";
-
-import DoctorDashboard from "./pages/Dashboards/DoctorDashboard.jsx";
-import PatientDashboard from "./pages/Dashboards/PatientDashboard.jsx";
-
-import Login from "./pages/login.jsx";
-import Signup from "./pages/Signup.jsx";
-
-import Navbar from "./components/Navbar.jsx";
-import AppLayout from "./components/AppLayout.jsx";
-import ProtectedRoute from "./routes/ProtectedRoute.jsx";
+import AppLayout from "./components/AppLayout";
 
 function App() {
   return (
     <BrowserRouter>
       <Navbar />
-
       <Routes>
-        {/* Public */}
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/search" element={<MedicineSearch />} />
+        <Route path="/medicine/:id" element={<MedicineDetails />} />
+        <Route path="/medicine/:id" element={<MedicineDetails />} />
         <Route path="/chatbot" element={<ChatbotPage />} />
-        <Route path="/scan" element={<BarcodeScanner />} />
-        <Route path="/prices/:medicineName" element={<PriceComparison />} />
-        <Route path="/doctor/:id" element={<DoctorDetails />} />
-        <Route path="/doctors" element={<Doctors />} />
-        <Route path="/payment/:id" element={<Payment />} />
-        <Route path="/waiting/:id" element={<Waiting />} />
 
-        {/* Medicine */}
+        <Route path="/consult" element={<Consult />} />
+        <Route path="/doctor/:id" element={<DoctorDetails />} />
         <Route
           path="/search"
           element={
@@ -51,17 +41,25 @@ function App() {
             </AppLayout>
           }
         />
-        <Route path="/medicine/:id" element={<MedicineDetails />} />
 
-        {/* Patient (Protected) */}
+        <Route path="/chat" element={<ChatbotPage />} />
+        <Route path="/reminders" element={<Reminders />} />
+
         <Route
-          path="/consult"
+          path="/reminders"
           element={
-            <ProtectedRoute role="patient">
-              <Consult />
+            <ProtectedRoute>
+              <Reminders />
             </ProtectedRoute>
           }
         />
+
+        <Route path="/scan" element={<BarcodeScanner />} />
+        <Route path="/prices/:medicineName" element={<PriceComparison />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/doctors" element={<Doctors />} />
+        <Route path="/consult/:id" element={<Consult />} />
         <Route
           path="/patient/dashboard"
           element={
@@ -70,16 +68,16 @@ function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
-          path="/prescription"
+          path="/consult"
           element={
             <ProtectedRoute role="patient">
-              <PrescriptionUpload />
+              <Consult />
             </ProtectedRoute>
           }
         />
 
-        {/* Doctor (Protected) */}
         <Route
           path="/doctor/dashboard"
           element={
@@ -89,17 +87,26 @@ function App() {
           }
         />
 
-        {/* Common Protected */}
+        <Route path="/doctors" element={<Doctors />} />
+        <Route path="/doctor/:id" element={<DoctorDetails />} />
+
         <Route
-          path="/reminders"
+          path="/consult"
           element={
-            <ProtectedRoute>
-              <Reminders />
+            <ProtectedRoute role="patient">
+              <Consult />
             </ProtectedRoute>
           }
         />
-      </Routes>
+
+        <Route path="/consult/:id" element={<Consult />} />
+        <Route path="/payment/:id" element={<Payment />} />
+        <Route path="/waiting/:id" element={<Waiting />} />
+        <Route path="/prescription" element={<PrescriptionUpload />} />
+</Routes>
+
     </BrowserRouter>
+       
   );
 }
 
