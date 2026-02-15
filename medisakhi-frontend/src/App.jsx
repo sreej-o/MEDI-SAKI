@@ -12,7 +12,7 @@ import DoctorDetails from "./pages/DoctorDetails.jsx";
 import Doctors from "./pages/Doctors.jsx";
 import Payment from "./pages/Payment.jsx";
 import Waiting from "./pages/Waiting.jsx";
-
+import PrescriptionUpload from "./pages/Prescription.jsx";
 
 import DoctorDashboard from "./pages/Dashboards/DoctorDashboard.jsx";
 import PatientDashboard from "./pages/Dashboards/PatientDashboard.jsx";
@@ -30,7 +30,7 @@ function App() {
       <Navbar />
 
       <Routes>
-        {/* Public Routes */}
+        {/* Public */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
@@ -53,7 +53,7 @@ function App() {
         />
         <Route path="/medicine/:id" element={<MedicineDetails />} />
 
-        {/* Protected – Patient */}
+        {/* Patient (Protected) */}
         <Route
           path="/consult"
           element={
@@ -79,7 +79,7 @@ function App() {
           }
         />
 
-        {/* Protected – Doctor */}
+        {/* Doctor (Protected) */}
         <Route
           path="/doctor/dashboard"
           element={
@@ -89,7 +89,7 @@ function App() {
           }
         />
 
-        {/* Protected – Common */}
+        {/* Common Protected */}
         <Route
           path="/reminders"
           element={
