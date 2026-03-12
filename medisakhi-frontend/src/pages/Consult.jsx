@@ -22,14 +22,14 @@ function Consult() {
 
   useEffect(() => {
     if (!doctor?.user) return;
-    axios.get(`http://localhost:5000/api/availability/${doctor.user}`)
+    axios.get(`${API_URL}/api/availability/${doctor.user}`)
       .then(res => setSlots(res.data.slots || {}))
       .catch(console.error);
   }, [doctor]);
 
   const handleBooking = async () => {
     const res = await axios.post(
-      "http://localhost:5000/api/consultations",
+      `${API_URL}/api/consultations`,
       {
         doctorId: doctor._id,
         day: selectedDay,
