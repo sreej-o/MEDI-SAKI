@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function PrescriptionUpload() {
   const [file, setFile] = useState(null);
@@ -25,7 +26,7 @@ function PrescriptionUpload() {
       console.log("TOKEN:", token);
 
       const res = await axios.post(
-        "http://localhost:5000/api/prescription/analyze",
+        `${API_URL}/api/prescription/analyze`,
         formData,
         {
           headers: {

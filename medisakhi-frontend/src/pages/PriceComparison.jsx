@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import PriceCard from "../components/PriceCard";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function PriceComparison() {
   const { medicineName } = useParams();
@@ -17,7 +18,7 @@ function PriceComparison() {
     }
 
     axios
-      .get(`http://localhost:5000/api/prices/compare/${medicineName}`)
+      .get(`${API_URL}/api/prices/compare/${medicineName}`)
       .then((res) => {
         setData(res.data);
         setLoading(false);

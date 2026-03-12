@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 import { QRCodeCanvas } from "qrcode.react";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Payment() {
   const { id } = useParams();
@@ -25,7 +26,7 @@ function Payment() {
     // simulate verification delay
     setTimeout(async () => {
       await axios.put(
-        `http://localhost:5000/api/consultations/${id}/pay`,
+        `${API_URL}/api/consultations/${id}/pay`,
         {},
         {
           headers: {

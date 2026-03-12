@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import DoctorCard from "../components/DoctorCard";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Doctors() {
   const [doctors, setDoctors] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/doctors")
+      .get(`${API_URL}/api/doctors`)
       .then((res) => setDoctors(res.data))
       .catch((err) => console.error(err));
   }, []);

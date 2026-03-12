@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Reminders() {
   // ✅ hooks MUST be inside component
@@ -26,7 +27,7 @@ function Reminders() {
   // 📥 fetch reminders
   const fetchReminders = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/reminder", {
+      const res = await axios.get(`${API_URL}/api/reminder`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setReminders(res.data);
@@ -75,7 +76,7 @@ function Reminders() {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/reminder",
+        `${API_URL}/api/reminder`,
         { medicineName, dosage, time },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -97,7 +98,7 @@ function Reminders() {
   // ❌ delete reminder
   const deleteReminder = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/reminder/${id}`, {
+      await axios.delete(`${API_URL}/api/reminder/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchReminders();

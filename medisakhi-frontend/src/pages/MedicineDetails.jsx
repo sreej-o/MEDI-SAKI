@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL;
 
 // fallback image logic
 const getMedicineImage = (type) => {
@@ -17,7 +18,7 @@ function MedicineDetails() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/medicines/${id}`)
+      .get(`${API_URL}/api/medicines/${id}`)
       .then((res) => {
         setMedicine(res.data);
         setLoading(false);

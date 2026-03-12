@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import MedicineCard from "../components/MedicineCard";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function MedicineSearch() {
   const [search, setSearch] = useState("");
@@ -13,7 +14,7 @@ function MedicineSearch() {
     const fetchMedicines = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:5000/api/medicines",
+         `${API_URL}/api/medicines`,
           {
             params:
               search.trim().length >= 2
