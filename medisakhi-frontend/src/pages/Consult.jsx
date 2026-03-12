@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Consult() {
   const { id } = useParams();
@@ -14,7 +15,7 @@ function Consult() {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/doctors/${id}`)
+    axios.get(`${API_URL}/api/doctors/${id}`)
       .then(res => setDoctor(res.data))
       .catch(console.error);
   }, [id]);
